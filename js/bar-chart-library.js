@@ -1,6 +1,7 @@
 const drawBarChart = (data, options, element) => {
-  const x = options.width
-  const y = options.height
+  const x = 'width' in options ? options.width : 400
+  const y = 'height' in options ? options.height : 400
+  const color = 'color' in options ? options.color : 'blue'
 
   const offsetX = 20
   const offsetY = 400
@@ -14,16 +15,18 @@ const drawBarChart = (data, options, element) => {
   drawAxes([offsetX, offsetY], x, y, element)
 
   for (let i = 0; i < data.length; i++) {
-    drawBox(offsetX + i*barWidth, offsetY, barWidth, data[i]*offsetY/10, element)
+    drawBox(offsetX + i*barWidth, offsetY, barWidth, data[i]*offsetY/10, element, color)
   }
 }
 
-const drawBox = (offsetX, offsetY, x, y, element) => {
+const drawBox = (offsetX, offsetY, x, y, element, color) => {
   let canvas = document.getElementById(element);
   let ctx = canvas.getContext("2d");
   ctx.beginPath();
   ctx.rect(offsetX, offsetY, x, -y);
   ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.fill();
 }
 
 const drawAxes = (origin, width, height, element) => {
