@@ -2,6 +2,9 @@ const drawBarChart = (data, options, element) => {
   const x = 'width' in options ? options.width : 400
   const y = 'height' in options ? options.height : 400
   const color = 'color' in options ? options.color : 'blue'
+  const spacing = 'spacing' in options ? options.spacing : 0
+  const xLabel = 'xLabel' in options ? options.xLabel : 'x'
+  const yLabel = 'yLabel' in options ? options.yLabel: 'y'
 
   const offsetX = 20
   const offsetY = 400
@@ -15,7 +18,7 @@ const drawBarChart = (data, options, element) => {
   drawAxes([offsetX, offsetY], x, y, element)
 
   for (let i = 0; i < data.length; i++) {
-    drawBox(offsetX + i*barWidth, offsetY, barWidth, data[i]*offsetY/10, element, color)
+    drawBox(offsetX + i*barWidth + spacing, offsetY, barWidth - spacing, data[i]*offsetY/10, element, color)
   }
 }
 
