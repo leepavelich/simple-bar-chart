@@ -11,11 +11,11 @@ const drawBarChart = (data, options, element) => {
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight/2
 
-  for (let i = 0; i < data.length; i++) {
-    drawBox(offsetX + (i+1)*barWidth, offsetY, barWidth, data[i]*offsetY/10, element)
-  }
+  drawAxes([offsetX, offsetY], x, y, element)
 
-  //drawAxes([70, 70], 50, 50, element)
+  for (let i = 0; i < data.length; i++) {
+    drawBox(offsetX + i*barWidth, offsetY, barWidth, data[i]*offsetY/10, element)
+  }
 }
 
 const drawBox = (offsetX, offsetY, x, y, element) => {
@@ -30,8 +30,12 @@ const drawAxes = (origin, width, height, element) => {
   let ctx= document.getElementById(element).getContext("2d")
   ctx.beginPath()
   ctx.moveTo(origin[0], origin[1]);
-  ctx.lineTo(origin[0], origin[1] - height);
+  ctx.lineTo(origin[0], origin[1] - height)
+
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.moveTo(origin[0], origin[1]);
   ctx.lineTo(origin[0] + width, origin[1])
-  //ctx.lineTo(90, 70);
-  ctx.stroke();
+  ctx.stroke()
 }
