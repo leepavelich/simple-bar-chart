@@ -1,4 +1,5 @@
 const drawBarChart = (data, options, element) => {
+  // TODO set defaults with Object.align() method
   const x = 'width' in options ? options.width : 400
   const y = 'height' in options ? options.height : 400
   const color = 'color' in options ? options.color : 'DeepSkyBlue'
@@ -37,16 +38,11 @@ const drawBox = (offsetX, offsetY, x, y, element, color) => {
 
 const drawAxes = (origin, width, height, element) => {
   let ctx= document.getElementById(element).getContext("2d")
+  ctx.lineWidth = 1
 
-  // y-axis
   ctx.beginPath()
-  ctx.lineWidth = 2
   ctx.moveTo(origin[0], origin[1]);
   ctx.lineTo(origin[0], origin[1] - height)
-  ctx.stroke()
-
-  // x-axis
-  ctx.beginPath()
   ctx.moveTo(origin[0], origin[1]);
   ctx.lineTo(origin[0] + width, origin[1])
   ctx.stroke()
