@@ -21,12 +21,13 @@ const drawBarChart = (data, options, element) => {
     drawBox(offsetX + i*barWidth + spacing, offsetY, barWidth - spacing, data[i]*offsetY/10, element, color)
   }
 
-  drawAxes([offsetX, offsetY], x, y, element)
+  drawAxes([offsetX, offsetY], x, y, xLabel, yLabel, element)
 
 }
 
 const drawBox = (offsetX, offsetY, x, y, element, color, outline=false) => {
-  let canvas = document.getElementById(element);
+  let canvas = document.getElementById(element)
+
   let ctx = canvas.getContext("2d")
   ctx.beginPath();
   ctx.rect(offsetX, offsetY, x, -y)
@@ -36,10 +37,16 @@ const drawBox = (offsetX, offsetY, x, y, element, color, outline=false) => {
   ctx.fill();
 }
 
-const drawAxes = (origin, width, height, element) => {
+const drawAxes = (origin, width, height, xLabel, yLabel, element) => {
   let ctx= document.getElementById(element).getContext("2d")
-  ctx.lineWidth = 1
 
+  // TODO adjust labels for label length
+  ctx.font = '20px Arial'
+  ctx.fillStyle = 'black'
+  ctx.fillText(xLabel, origin[0] + width/2, origin[1] + 40)
+  ctx.fillText(yLabel, origin[0] - 40, origin[1]/2)
+
+  ctx.lineWidth = 1
   ctx.beginPath()
   ctx.moveTo(origin[0], origin[1]);
   ctx.lineTo(origin[0], origin[1] - height)
