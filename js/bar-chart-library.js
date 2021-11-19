@@ -9,7 +9,7 @@ const drawBarChart = (data, options, element) => {
 
   const offsetX = 100
   const offsetY = 400
-  const colNum   = data.length
+  // const colNum   = data.length
   const barWidth = x / data.length
 
   let canvas = document.getElementById(element);
@@ -25,13 +25,13 @@ const drawBarChart = (data, options, element) => {
 
 }
 
-const drawBox = (offsetX, offsetY, x, y, element, color) => {
+const drawBox = (offsetX, offsetY, x, y, element, color, outline=false) => {
   let canvas = document.getElementById(element);
-  let ctx = canvas.getContext("2d");
+  let ctx = canvas.getContext("2d")
   ctx.beginPath();
-  ctx.rect(offsetX, offsetY, x, -y);
+  ctx.rect(offsetX, offsetY, x, -y)
   ctx.lineWidth = 2
-  ctx.stroke();
+  if (outline === 'true') ctx.stroke()
   ctx.fillStyle = color;
   ctx.fill();
 }
