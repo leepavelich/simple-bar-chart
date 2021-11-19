@@ -6,6 +6,7 @@ const drawBarChart = (data, options, element) => {
   const spacing = 'spacing' in options ? options.spacing : 15
   const xLabel = 'xLabel' in options ? options.xLabel : 'x'
   const yLabel = 'yLabel' in options ? options.yLabel : 'y'
+  const labelSize = 'labelSize' in options ? options.labelSize: 20
   const title  = 'title' in options ? options.title : 'Title'
   const titleColor = 'titleColor' in options ? options.titleColor : 'Black'
   const titleSize = 'titleSize' in options ? options.titleSize : 24
@@ -24,7 +25,7 @@ const drawBarChart = (data, options, element) => {
     drawBox(offsetX + i*barWidth + spacing, offsetY, barWidth - spacing, data[i]*offsetY/10, element, color)
   }
 
-  drawAxes([offsetX, offsetY], x, y, xLabel, yLabel, element)
+  drawAxes([offsetX, offsetY], x, y, xLabel, yLabel, labelSize, element)
   drawTitle([offsetX, offsetY], x, y, title, titleColor, titleSize, element)
 }
 
@@ -40,10 +41,10 @@ const drawBox = (offsetX, offsetY, x, y, element, color, outline=false) => {
   ctx.fill();
 }
 
-const drawAxes = (origin, width, height, xLabel, yLabel, element) => {
+const drawAxes = (origin, width, height, xLabel, yLabel, labelSize, element) => {
   let ctx= document.getElementById(element).getContext("2d")
 
-  ctx.font = '20px Arial'
+  ctx.font = `${labelSize}px Arial`
   ctx.fillStyle = 'black'
 
   ctx.textAlign = 'center'
