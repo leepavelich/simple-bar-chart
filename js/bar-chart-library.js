@@ -40,11 +40,12 @@ const drawBox = (offsetX, offsetY, x, y, element, color, outline=false) => {
 const drawAxes = (origin, width, height, xLabel, yLabel, element) => {
   let ctx= document.getElementById(element).getContext("2d")
 
-  // TODO adjust labels for label length
   ctx.font = '20px Arial'
   ctx.fillStyle = 'black'
+  ctx.textAlign = 'center'
   ctx.fillText(xLabel, origin[0] + width/2, origin[1] + 40)
-  ctx.fillText(yLabel, origin[0] - 40, origin[1]/2)
+  ctx.textAlign = 'end'
+  ctx.fillText(yLabel, origin[0] - 30, origin[1]/2)
 
   ctx.lineWidth = 1
   ctx.beginPath()
